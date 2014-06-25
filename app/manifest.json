@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "Chrome Native Messaging Example",
+  "version": "1.0",
+  "description": "Send a message to a native application.",
+  "app": {
+    "background": {
+      "scripts": [ "background.js" ]
+    }
+  },
+  "permissions": [
+    "nativeMessaging"
+  ]
+}

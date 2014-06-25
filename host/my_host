@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+
+var nativeMessage = require('../index');
+
+var save = false;
+
+if (save) {
+    process.stdin.pipe(fs.createWriteStream('/Users/jason/chrome-native-messaging/out.dat'));
+} else {
+    process.stdin
+        .pipe(new nativeMessage.Input())
+        .pipe(new nativeMessage.Output())
+        .pipe(process.stdout)
+    ;
+}

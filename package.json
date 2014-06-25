@@ -1,0 +1,16 @@
+{
+  "name": "chrome-native-messaging",
+  "version": "0.0.1",
+  "author": "Jason Diamond <jason@diamond.name>",
+  "license": "MIT",
+  "description": "TODO",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "tape": "^2.13.3"
+  },
+  "scripts": {
+    "test": "node test.js"
+  }
+}

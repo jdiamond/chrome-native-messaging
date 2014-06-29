@@ -1,6 +1,6 @@
 # Chrome Native Messaging for Node.js
 
-Transform streams for native messaging for Chrome Apps.
+Stream transforms for writing Chrome App native messaging hosts in Node.js.
 
 More info here: https://developer.chrome.com/extensions/messaging#native-messaging
 

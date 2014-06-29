@@ -2,8 +2,10 @@
   "name": "chrome-native-messaging",
   "version": "0.0.1",
   "author": "Jason Diamond <jason@diamond.name>",
-  "license": "MIT",
-  "description": "TODO",
+  "licenses": [ { "type": "MIT", "url": "http://jdiamond.mit-license.org/" } ],
+  "repository" : { "type": "git", "url": "https://github.com/jdiamond/chrome-native-messaging.git" },
+  "description": "Stream transforms for writing Chrome App native messaging hosts in Node.js",
+  "keywords": [ "chrome-app", "native-messaging" ],
   "main": "index.js",
   "dependencies": {
   },

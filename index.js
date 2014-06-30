@@ -4,6 +4,7 @@
 //
 // - Input - transform native messages to JavaScript objects
 // - Output - transform JavaScript objects to native messages
+// - Transform - transform message objects to reply objects
 // - Debug - transform JavaScript objects to lines of JSON (for debugging, obviously)
 
 var stream = require('stream');
@@ -91,6 +92,21 @@ Output.prototype._transform = function(chunk, encoding, done) {
     done();
 };
 
+function Transform(handler) {
+    stream.Transform.call(this);
+
+    this._writableState.objectMode = true;
+    this._readableState.objectMode = true;
+
+    this.handler = handler;
+}
+
+util.inherits(Transform, stream.Transform);
+
+Transform.prototype._transform = function(msg, encoding, done) {
+    this.handler(msg, this.push.bind(this), done);
+};
+
 function Debug() {
     stream.Transform.call(this);
 
@@ -108,4 +124,5 @@ Debug.prototype._transform = function(chunk, encoding, done) {
 
 exports.Input = Input;
 exports.Output = Output;
+exports.Transform = Transform;
 exports.Debug = Debug;

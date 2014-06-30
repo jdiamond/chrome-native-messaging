@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html style="overflow: auto;">
 <head>
     <title>Chrome Native Messaging Example</title>
 </head>
 <body>
-    <p>
-        <textarea id="msg" rows="8" cols="40">{ "foo": "bar" }</textarea>
-    </p>
+    <p><textarea id="msg" rows="8" cols="40">{ "readdir": "/" }</textarea></p>
 
     <p><button id="send">Send</button></p>
 
-    <pre id="response">
-    </pre>
+    <pre id="response"></pre>
 
     <script src="main.js"></script>
 </body>

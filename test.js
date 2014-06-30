@@ -32,3 +32,18 @@ test('Output', function(t) {
         t.end();
     });
 });
+
+test('Transform', function(t) {
+    var transform = new nativeMessaging.Transform(function(msg, push, done) {
+        push({ output: msg.input.toUpperCase() });
+        done();
+    });
+
+    transform.end({ input: 'data' });
+
+    transform.on('readable', function() {
+        var obj = transform.read();
+        t.equal(obj.output, 'data'.toUpperCase());
+        t.end();
+    });
+});

@@ -1,0 +1,9 @@
+{
+  "name": "com.my_company.my_application",
+  "description": "My Application",
+  "path": "my_host.bat",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://bmfbcejdknlknpncfpeloejonjoledha/"
+  ]
+}

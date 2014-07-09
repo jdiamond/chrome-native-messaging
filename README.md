@@ -39,7 +39,7 @@ process.stdin
 
 The `app` directory contains a sample Chrome App.
 
-The `host` directory contains a native messaging host that just echoes its input as output.
+The `host` directory contains a native messaging host that you can send "readdir" messages to.
 
 Go to the Chrome Extensions page (chrome://extensions/) and hit "Load unpacked extension...".
 Select the `app` directory. Look at the ID it received and put it in the host manifest.
@@ -50,12 +50,13 @@ on OS X.
 Install the host manifest:
 
 ```
-sudo mkdir -p /Library/Google/Chrome/NativeMessagingHosts
-sudo cp host/com.my_company.my_application.json /Library/Google/Chrome/NativeMessagingHosts
+sudo host/register.sh
+```
 
-# Or, for applications installed at the user level:
-mkdir -p ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts
-cp host/com.my_company.my_application.json ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts
+On Windows (Run as Administrator):
+
+```
+host\register.bat
 ```
 
 Open a new tab and hit Apps in the upper left. Launch the example app and
@@ -71,7 +72,13 @@ Use it to send messages to your host to see how it responds.
 Pipe the output of your host to `msg2json.js` to see what its output looks like.
 
 ```
-./json2msg.js < test.json | ./host/my_host | ./msg2json.js
+./json2msg.js < test.json | ./host/my_host.js | ./msg2json.js
+```
+
+On Windows:
+
+```
+node json2msg.js < test.json | node host\my_host.js | node msg2json.js
 ```
 
 ## Logging
@@ -84,10 +91,22 @@ Quit Chrome first.
 open -a Google\ Chrome --args --enable-logging --v=1
 ```
 
+On Windows:
+
+```
+start chrome --enable-logging --v=1
+```
+
 View the log like this:
 
 ```
 less ~/Library/Application\ Support/Google/Chrome/chrome_debug.log
+```
+
+On Windows:
+
+```
+type "C:\Users\%USERNAME%\AppData\Local\Google\Chrome\User Data\chrome_debug.log"
 ```
 
 More info: http://www.chromium.org/for-testers/enable-logging

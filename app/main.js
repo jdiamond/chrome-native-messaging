@@ -1,3 +1,5 @@
+var port = null;
+
 document.getElementById('send').onclick = function() {
     var msg = document.getElementById('msg').value;
 
@@ -7,14 +9,15 @@ document.getElementById('send').onclick = function() {
     var connect = true;
 
     if (connect) {
-        var port = chrome.runtime.connectNative(application);
+        if(!port) {
+			port = chrome.runtime.connectNative(application);
 
-        port.onMessage.addListener(log);
+			port.onMessage.addListener(log);
 
-        port.onDisconnect.addListener(function() {
-            log({ event: 'disconnect' });
-        });
-
+			port.onDisconnect.addListener(function() {
+				log({ event: 'disconnect' });
+			});
+		}
         port.postMessage(msg);
     } else {
         chrome.runtime.sendNativeMessage(application, msg, log);

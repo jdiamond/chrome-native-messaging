@@ -15,7 +15,8 @@ document.getElementById('send').onclick = function() {
 			port.onMessage.addListener(log);
 
 			port.onDisconnect.addListener(function() {
-				log({ event: 'disconnect' });
+				log({ event: 'disconnect ' + chrome.runtime.lastError.message });
+				port = null;
 			});
 		}
         port.postMessage(msg);

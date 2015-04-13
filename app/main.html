@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html style="overflow: auto;">
+<html>
 <head>
     <title>Chrome Native Messaging Example</title>
+
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <p><textarea id="msg" rows="8" cols="40">{ "readdir": "/" }</textarea></p>
+    <p>
+        <button id="connect">Connect</button>
+        <button id="disconnect">Disconnect</button>
+    </p>
+
+    <hr>
+
+    <p>
+        Examples:
+        <button data-example="ping">Ping</button>
+        <button data-example="readdir">Read Directory</button>
+        <button data-example="subscribe">Subscribe</button>
+        <button data-example="unsubscribe">Unsubscribe</button>
+    </p>
+
+    <p><textarea id="msg" rows="4" cols="40">{"ping":"pong"}</textarea></p>
 
     <p><button id="send">Send</button></p>
 
-    <pre id="response"></pre>
+    <hr>
+
+    <p><button id="clear">Clear</button></p>
+
+    <div id="log"></div>
 
     <script src="main.js"></script>
 </body>

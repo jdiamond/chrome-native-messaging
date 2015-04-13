@@ -39,13 +39,17 @@ process.stdin
 
 The `app` directory contains a sample Chrome App.
 
-The `host` directory contains a native messaging host that you can send "readdir" messages to.
+The `host` directory contains a native messaging host that you can send
+messages to.
 
-Go to the Chrome Extensions page (chrome://extensions/) and hit "Load unpacked extension...".
-Select the `app` directory. Look at the ID it received and put it in the host manifest.
+Go to the Chrome Extensions page (chrome://extensions/), hit "Load unpacked
+extension...", and select this project's `app` directory.
 
-The `host` directory contains the manifest that must be copied to the correct directory
-on OS X.
+SUPER IMPORTANT: Find the ID your app received when you loaded it and copy it
+to the host manifest in the `host` directory.
+
+SUPER IMPORTANT ON MACS: The path to the host must be absolute. Make sure the
+"path" property in the manifest is correct (it's probably not unless you're me).
 
 Install the host manifest:
 
@@ -59,8 +63,8 @@ On Windows (Run as Administrator):
 host\register.bat
 ```
 
-Open a new tab and hit Apps in the upper left. Launch the example app and
-send yourself messages.
+Open a new tab and hit Apps in the upper left. Launch the example app and send
+yourself messages.
 
 ## Testing
 

@@ -1,7 +1,7 @@
 {
   "name": "com.my_company.my_application",
   "description": "My Application",
-  "path": "/Users/jason/chrome-native-messaging/host/my_host.js",
+  "path": "/Users/jason/code/chrome-native-messaging/host/my_host.js",
   "type": "stdio",
   "allowed_origins": [
     "chrome-extension://bmfbcejdknlknpncfpeloejonjoledha/"

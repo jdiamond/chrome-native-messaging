@@ -19,7 +19,7 @@ function Input() {
     this._readableState.objectMode = true;
 
     // Unparsed data.
-    this.buf = new Buffer(0);
+    this.buf = typeof Buffer.alloc === 'function' ? Buffer.alloc(0) : new Buffer(0);
     // Parsed length.
     this.len = null;
 }
@@ -81,13 +81,14 @@ function Output() {
 util.inherits(Output, stream.Transform);
 
 Output.prototype._transform = function(chunk, encoding, done) {
-    var len = new Buffer(4);
-    var buf = new Buffer(JSON.stringify(chunk));
+    var len = typeof Buffer.alloc === 'function' ? Buffer.alloc(4) : new Buffer(4);
+    var buf = typeof Buffer.from === 'function'
+        ? Buffer.from(JSON.stringify(chunk))
+        : new Buffer(JSON.stringify(chunk));
 
     len.writeUInt32LE(buf.length, 0);
 
-    this.push(len);
-    this.push(buf);
+    this.push(Buffer.concat([len, buf]));
 
     done();
 };

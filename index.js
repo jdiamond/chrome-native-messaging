@@ -9,6 +9,7 @@
 
 var stream = require('stream');
 var util = require('util');
+var UInt32Native = require('./native').UInt32Native;
 
 function Input() {
     stream.Transform.call(this);
@@ -38,7 +39,7 @@ Input.prototype._transform = function(chunk, encoding, done) {
             // Nope. Do we have enough bytes for the length?
             if (self.buf.length >= 4) {
                 // Yep. Parse the bytes.
-                self.len = self.buf.readUInt32LE(0);
+                self.len = UInt32Native.read(self.buf, 0);
                 // Remove the length bytes from the buffer.
                 self.buf = self.buf.slice(4);
             }
@@ -86,7 +87,7 @@ Output.prototype._transform = function(chunk, encoding, done) {
         ? Buffer.from(JSON.stringify(chunk))
         : new Buffer(JSON.stringify(chunk));
 
-    len.writeUInt32LE(buf.length, 0);
+    UInt32Native.write(len, buf.length, 0);
 
     this.push(Buffer.concat([len, buf]));
 

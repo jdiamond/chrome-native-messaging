@@ -3,10 +3,11 @@
 var test = require('tape');
 
 var nativeMessaging = require('./index');
+var UInt32Native = require('./native').UInt32Native;
 
 test('Input', function(t) {
     var buf =typeof Buffer.alloc === 'function' ? Buffer.alloc(17) : new Buffer(17);
-    buf.writeUInt32LE(13, 0);
+    UInt32Native.write(buf, 13, 0);
     buf.write('{"foo":"bar"}', 4);
 
     var input = new nativeMessaging.Input();
@@ -25,7 +26,7 @@ test('Output', function(t) {
 
     output.once('readable', function() {
         var buf = output.read();
-        t.equal(buf.readUInt32LE(0), 13);
+        t.equal(UInt32Native.read(buf, 0), 13);
         t.equal(buf.slice(4).toString(), '{"foo":"bar"}');
         t.end();
     });

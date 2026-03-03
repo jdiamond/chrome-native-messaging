@@ -18,9 +18,11 @@
     "native-messaging"
   ],
   "main": "index.js",
-  "dependencies": {},
+  "types": "index.d.ts",
   "devDependencies": {
-    "tape": "^4.13.0"
+    "@types/node": "^25.3.3",
+    "tape": "^4.13.0",
+    "typescript": "^5.9.3"
   },
   "scripts": {
     "test": "node test.js"
